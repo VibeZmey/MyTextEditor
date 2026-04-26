@@ -6,13 +6,12 @@
 #include <map>
 #include <memory>
 
-// Паттерн Strategy для разных стратегий подсветки синтаксиса
 class SyntaxHighlighter {
 public:
     struct TokenInfo {
         int start;
         int length;
-        std::string type;  // "keyword", "comment", "string", "number"
+        std::string type; 
         std::string color;
     };
 
@@ -26,7 +25,6 @@ public:
     virtual std::string getLanguageName() const = 0;
 };
 
-// Конкретная реализация для C++
 class CppHighlighter : public SyntaxHighlighter {
 public:
     CppHighlighter();
@@ -34,7 +32,6 @@ public:
     std::string getLanguageName() const override;
 };
 
-// Конкретная реализация для Python
 class PythonHighlighter : public SyntaxHighlighter {
 public:
     PythonHighlighter();
@@ -42,7 +39,6 @@ public:
     std::string getLanguageName() const override;
 };
 
-// Конкретная реализация для Java
 class JavaHighlighter : public SyntaxHighlighter {
 public:
     JavaHighlighter();
@@ -50,7 +46,6 @@ public:
     std::string getLanguageName() const override;
 };
 
-// Фабрика для создания подсветчиков (паттерн Factory Method)
 class HighlighterFactory {
 public:
     static std::unique_ptr<SyntaxHighlighter> createHighlighter(const std::string& language);

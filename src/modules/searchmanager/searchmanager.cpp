@@ -27,7 +27,6 @@ std::vector<int> SearchManager::search(const std::string& text, const std::strin
     lastResults.clear();
     lastQuery = query;
 
-    // Преобразовать в нижний регистр для поиска без учета регистра
     std::string lowerText = text;
     std::string lowerQuery = query;
     std::transform(lowerText.begin(), lowerText.end(), lowerText.begin(), ::tolower);

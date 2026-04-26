@@ -2,7 +2,6 @@
 #include <regex>
 #include <cctype>
 
-// ==================== CppHighlighter ====================
 CppHighlighter::CppHighlighter() {
     keywords = {
         "int", "float", "double", "char", "bool", "void", "unsigned", "signed",
@@ -15,10 +14,10 @@ CppHighlighter::CppHighlighter() {
         "try", "catch", "throw", "typename"
     };
 
-    colorMap["keyword"] = "#0000FF";      // Синий
-    colorMap["comment"] = "#008000";      // Зеленый
-    colorMap["string"] = "#FF0000";       // Красный
-    colorMap["number"] = "#FF6600";       // Оранжевый
+    colorMap["keyword"] = "#0000FF";    
+    colorMap["comment"] = "#008000";   
+    colorMap["string"] = "#FF0000";    
+    colorMap["number"] = "#FF6600";      
 }
 
 std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::string& text) {
@@ -26,13 +25,11 @@ std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::s
 
     size_t i = 0;
     while (i < text.length()) {
-        // Пропустить пробелы и табуляцию
         if (std::isspace(text[i])) {
             i++;
             continue;
         }
 
-        // Комментарии //
         if (i + 1 < text.length() && text[i] == '/' && text[i + 1] == '/') {
             size_t end = text.find('\n', i);
             if (end == std::string::npos) end = text.length();
@@ -41,7 +38,6 @@ std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::s
             continue;
         }
 
-        // Комментарии /* */
         if (i + 1 < text.length() && text[i] == '/' && text[i + 1] == '*') {
             size_t end = text.find("*/", i);
             if (end == std::string::npos) end = text.length();
@@ -51,7 +47,6 @@ std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::s
             continue;
         }
 
-        // Строки в двойных кавычках
         if (text[i] == '"') {
             size_t start = i;
             i++;
@@ -64,7 +59,6 @@ std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::s
             continue;
         }
 
-        // Строки в одинарных кавычках
         if (text[i] == '\'') {
             size_t start = i;
             i++;
@@ -77,7 +71,6 @@ std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::s
             continue;
         }
 
-        // Числа
         if (std::isdigit(text[i])) {
             size_t start = i;
             while (i < text.length() && (std::isdigit(text[i]) || text[i] == '.')) {
@@ -87,7 +80,6 @@ std::vector<SyntaxHighlighter::TokenInfo> CppHighlighter::highlight(const std::s
             continue;
         }
 
-        // Ключевые слова и идентификаторы
         if (std::isalpha(text[i]) || text[i] == '_') {
             size_t start = i;
             while (i < text.length() && (std::isalnum(text[i]) || text[i] == '_')) {
@@ -119,7 +111,6 @@ std::string CppHighlighter::getLanguageName() const {
     return "C++";
 }
 
-// ==================== PythonHighlighter ====================
 PythonHighlighter::PythonHighlighter() {
     keywords = {
         "def", "class", "if", "else", "elif", "for", "while", "return",
@@ -129,10 +120,10 @@ PythonHighlighter::PythonHighlighter() {
         "assert", "del", "global", "nonlocal"
     };
 
-    colorMap["keyword"] = "#FF7700";      // Оранжевый
-    colorMap["comment"] = "#008000";      // Зеленый
-    colorMap["string"] = "#FF0000";       // Красный
-    colorMap["number"] = "#FF6600";       // Оранжевый
+    colorMap["keyword"] = "#FF7700";   
+    colorMap["comment"] = "#008000";   
+    colorMap["string"] = "#FF0000";    
+    colorMap["number"] = "#FF6600";   
 }
 
 std::vector<SyntaxHighlighter::TokenInfo> PythonHighlighter::highlight(const std::string& text) {
@@ -145,7 +136,6 @@ std::vector<SyntaxHighlighter::TokenInfo> PythonHighlighter::highlight(const std
             continue;
         }
 
-        // Комментарии #
         if (text[i] == '#') {
             size_t end = text.find('\n', i);
             if (end == std::string::npos) end = text.length();
@@ -154,7 +144,6 @@ std::vector<SyntaxHighlighter::TokenInfo> PythonHighlighter::highlight(const std
             continue;
         }
 
-        // Тройные кавычки
         if (i + 2 < text.length() && text.substr(i, 3) == "\"\"\"") {
             size_t start = i;
             i += 3;
@@ -166,7 +155,6 @@ std::vector<SyntaxHighlighter::TokenInfo> PythonHighlighter::highlight(const std
             continue;
         }
 
-        // Строки в двойных кавычках
         if (text[i] == '"') {
             size_t start = i;
             i++;
@@ -179,7 +167,6 @@ std::vector<SyntaxHighlighter::TokenInfo> PythonHighlighter::highlight(const std
             continue;
         }
 
-        // Числа
         if (std::isdigit(text[i])) {
             size_t start = i;
             while (i < text.length() && (std::isdigit(text[i]) || text[i] == '.')) {
@@ -189,7 +176,6 @@ std::vector<SyntaxHighlighter::TokenInfo> PythonHighlighter::highlight(const std
             continue;
         }
 
-        // Ключевые слова и идентификаторы
         if (std::isalpha(text[i]) || text[i] == '_') {
             size_t start = i;
             while (i < text.length() && (std::isalnum(text[i]) || text[i] == '_')) {
@@ -221,7 +207,6 @@ std::string PythonHighlighter::getLanguageName() const {
     return "Python";
 }
 
-// ==================== JavaHighlighter ====================
 JavaHighlighter::JavaHighlighter() {
     keywords = {
         "public", "private", "protected", "static", "final", "abstract",
@@ -233,10 +218,10 @@ JavaHighlighter::JavaHighlighter() {
         "true", "false", "null", "instanceof"
     };
 
-    colorMap["keyword"] = "#7F0055";      // Фиолетовый
-    colorMap["comment"] = "#3F7F5F";      // Зеленый
-    colorMap["string"] = "#2A00FF";       // Синий
-    colorMap["number"] = "#00AA00";       // Зеленый
+    colorMap["keyword"] = "#7F0055";     
+    colorMap["comment"] = "#3F7F5F";   
+    colorMap["string"] = "#2A00FF";   
+    colorMap["number"] = "#00AA00";    
 }
 
 std::vector<SyntaxHighlighter::TokenInfo> JavaHighlighter::highlight(const std::string& text) {
@@ -249,7 +234,6 @@ std::vector<SyntaxHighlighter::TokenInfo> JavaHighlighter::highlight(const std::
             continue;
         }
 
-        // Комментарии //
         if (i + 1 < text.length() && text[i] == '/' && text[i + 1] == '/') {
             size_t end = text.find('\n', i);
             if (end == std::string::npos) end = text.length();
@@ -258,7 +242,6 @@ std::vector<SyntaxHighlighter::TokenInfo> JavaHighlighter::highlight(const std::
             continue;
         }
 
-        // Комментарии /* */
         if (i + 1 < text.length() && text[i] == '/' && text[i + 1] == '*') {
             size_t end = text.find("*/", i);
             if (end == std::string::npos) end = text.length();
@@ -268,7 +251,6 @@ std::vector<SyntaxHighlighter::TokenInfo> JavaHighlighter::highlight(const std::
             continue;
         }
 
-        // Строки в двойных кавычках
         if (text[i] == '"') {
             size_t start = i;
             i++;
@@ -281,7 +263,6 @@ std::vector<SyntaxHighlighter::TokenInfo> JavaHighlighter::highlight(const std::
             continue;
         }
 
-        // Числа
         if (std::isdigit(text[i])) {
             size_t start = i;
             while (i < text.length() && (std::isdigit(text[i]) || text[i] == '.')) {
@@ -291,7 +272,6 @@ std::vector<SyntaxHighlighter::TokenInfo> JavaHighlighter::highlight(const std::
             continue;
         }
 
-        // Ключевые слова
         if (std::isalpha(text[i]) || text[i] == '_') {
             size_t start = i;
             while (i < text.length() && (std::isalnum(text[i]) || text[i] == '_')) {
@@ -323,11 +303,9 @@ std::string JavaHighlighter::getLanguageName() const {
     return "Java";
 }
 
-// ==================== HighlighterFactory ====================
 std::unique_ptr<SyntaxHighlighter> HighlighterFactory::createHighlighter(const std::string& language) {
     std::string lang = language;
 
-    // Конвертировать в нижний регистр
     for (auto& c : lang) c = std::tolower(c);
 
     if (lang == "cpp" || lang == "cc" || lang == "cxx" || lang == "c++") {
@@ -338,7 +316,6 @@ std::unique_ptr<SyntaxHighlighter> HighlighterFactory::createHighlighter(const s
         return std::make_unique<JavaHighlighter>();
     }
 
-    // По умолчанию C++
     return std::make_unique<CppHighlighter>();
 }
 
