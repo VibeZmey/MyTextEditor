@@ -22,29 +22,17 @@ cd build
 ```
 
 TextEditor/ 
-
 ├── CMakeLists.txt 
-
 ├── README.md 
-
 ├── src/ 
-
 │ ├── main.cpp 
-
 │ └── modules/ 
-
 │ ├── editor/ 
-
 │ ├── command/ 
-
 │ ├── syntaxhighlighter/ 
-
 │ ├── filemanager/ 
-
 │ ├── searchmanager/ 
-
 │ └── mainwindow/ 
-
 └── resources/
 
 ![Пример запуска приложения](images/imagepks1.png)
