@@ -21,18 +21,22 @@ cd build
 .\MyTextEditor.exe
 ```
 
-TextEditor/ 
-├── CMakeLists.txt 
-├── README.md 
-├── src/ 
-│ ├── main.cpp 
-│ └── modules/ 
-│ ├── editor/ 
-│ ├── command/ 
-│ ├── syntaxhighlighter/ 
-│ ├── filemanager/ 
-│ ├── searchmanager/ 
-│ └── mainwindow/ 
+## Структура проекта
+
+```text
+TextEditor/
+├── CMakeLists.txt
+├── README.md
+├── src/
+│   ├── main.cpp
+│   ── modules/
+│       ├── editor/
+│       ├── command/
+│       ├── syntaxhighlighter/
+│       ├── filemanager/
+│       ├── searchmanager/
+│       └── mainwindow/
 └── resources/
+```
 
 ![Пример запуска приложения](images/imagepks1.png)
